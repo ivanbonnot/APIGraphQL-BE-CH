@@ -1,7 +1,7 @@
 
 const { buildSchema } = require('graphql')
 
-const schemaProduct = buildSchema (`
+const schemaProduct = buildSchema(`
     type Product {
         timestamp: String!,
         title: String!, 
@@ -23,17 +23,23 @@ const schemaProduct = buildSchema (`
     }
 
     type Query {
-        getProduct(_id: id)
+        getAllProducts: [Product]!
+        getProductById(id: ID!): Product!
     }
-    
-    
+
+    type Mutation {
+        addProduct(title: String!, description: String, code: String, thumbnail: String!, price: Int!, stock: Int): Product!
+        updateProduct(id: ID!, title: String!, description: String, code: String, thumbnail: String!, price: Int!, stock: Int): Product!
+        deleteProduct(id: ID!): ID!
+    }
     
     `
 )
 
-const schemaUser = buildSchema (`
+
+
+const schemaUser = buildSchema(`
   
-    
     type User {
         timestamp: String!,
         username: String!,
@@ -49,7 +55,7 @@ const schemaUser = buildSchema (`
     `
 )
 
-const schemaChat = buildSchema (`
+const schemaChat = buildSchema(`
    
 
     type Chat {
@@ -69,3 +75,5 @@ const schemaChat = buildSchema (`
     
     `
 )
+
+module.exports = { schemaProduct }

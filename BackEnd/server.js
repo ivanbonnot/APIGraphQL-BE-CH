@@ -1,5 +1,8 @@
 const morgan = require('morgan');
 const express = require('express');
+
+const { graphqlHTTP } = require('express-graphql')
+
 const compression = require('compression')
 const logger = require('./log/log4js')
 const session = require('express-session');

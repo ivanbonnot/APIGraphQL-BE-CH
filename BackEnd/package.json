@@ -15,6 +15,7 @@
     "express-session": "^1.17.3",
     "faker": "^6.6.6",
     "graphql": "^16.6.0",
+    "graphql-yoga": "^3.9.1",
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^9.0.0",
     "knex": "^2.4.0",
