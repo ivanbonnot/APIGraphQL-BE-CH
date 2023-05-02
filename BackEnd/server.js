@@ -70,6 +70,7 @@ const baseProcces = () => {
     const PORT = 8080
     
     server.start().then(() => {
+        connectToDb("mongo")
         app.use("/graphql", expressMiddleware(server));
         app.listen(PORT);
       });
