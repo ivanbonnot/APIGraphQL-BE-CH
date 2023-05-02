@@ -1,7 +1,4 @@
-
-const { buildSchema } = require('graphql')
-
-const schemaProduct = buildSchema(`
+module.exports.typeDefs = `#graphql
     type Product {
         timestamp: String!,
         title: String!, 
@@ -22,24 +19,6 @@ const schemaProduct = buildSchema(`
         price: Int!
     }
 
-    type Query {
-        getAllProducts: [Product]!
-        getProductById(id: ID!): Product!
-    }
-
-    type Mutation {
-        addProduct(title: String!, description: String, code: String, thumbnail: String!, price: Int!, stock: Int): Product!
-        updateProduct(id: ID!, title: String!, description: String, code: String, thumbnail: String!, price: Int!, stock: Int): Product!
-        deleteProduct(id: ID!): ID!
-    }
-    
-    `
-)
-
-
-
-const schemaUser = buildSchema(`
-  
     type User {
         timestamp: String!,
         username: String!,
@@ -50,13 +29,6 @@ const schemaUser = buildSchema(`
         avatar: String,
         cartId: String!
     }
-
-    
-    `
-)
-
-const schemaChat = buildSchema(`
-   
 
     type Chat {
         author: Author!
@@ -72,8 +44,18 @@ const schemaChat = buildSchema(`
         nickname: String!
         avatar: String!
       }
+
+    type Query {
+        products: [Product]!
+        product(id: ID!): Product!
+    }
+
+    type Mutation {
+        addProduct(title: String!, description: String, code: String, thumbnail: String!, price: Int!, stock: Int): Product!
+        updateProduct(id: ID!, title: String!, description: String, code: String, thumbnail: String!, price: Int!, stock: Int): Product!
+        deleteProduct(id: ID!): ID!
+    }
     
     `
-)
+ ;
 
-module.exports = { schemaProduct }

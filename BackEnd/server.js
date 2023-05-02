@@ -1,7 +1,8 @@
 const morgan = require('morgan');
 const express = require('express');
 
-const { graphqlHTTP } = require('express-graphql')
+const { expressMiddleware } = require('@apollo/server/express4')
+const server = require('./graphQL/server')
 
 const compression = require('compression')
 const logger = require('./log/log4js')
@@ -67,12 +68,11 @@ const baseProcces = () => {
 
 
     const PORT = 8080
-    const server = httpServer.listen(PORT, () => {
-        connectToDb("mongo")
-        console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
-    })
-    server.on('error', error => logger.error(`Error en servidor ${error}`))
-
+    
+    server.start().then(() => {
+        app.use("/graphql", expressMiddleware(server));
+        app.listen(PORT);
+      });
     
     //Routes
     app.use("/info", infoRouter)
