@@ -1,5 +1,6 @@
 module.exports.typeDefs = `#graphql
     type Product {
+        id: ID!
         timestamp: String!,
         title: String!, 
         thumbnail: String!,
@@ -47,7 +48,7 @@ module.exports.typeDefs = `#graphql
 
     type Query {
         products: [Product]!
-        product(id: ID!): Product!
+        product(productId: ID!): Product!
     }
 
     type Mutation {
